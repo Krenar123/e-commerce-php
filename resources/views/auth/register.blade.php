@@ -86,7 +86,7 @@
                         </div>
 
                         <div class="form-group row" id="market_add">
-                            <label for="role" class="col-md-4 col-form-label text-md-right">{{ __('Address') }}</label>
+                            <label for="role" class="col-md-4 col-form-label text-md-right">{{ __('Market Address') }}</label>
 
                             <div class="col-md-6">
                             <input id="market_address" type="text" class="form-control" name="market_address">
@@ -94,7 +94,7 @@
                         </div>
 
                         <div class="form-group row" id="client">
-                            <label for="role" class="col-md-4 col-form-label text-md-right">{{ __('Address') }}</label>
+                            <label for="role" class="col-md-4 col-form-label text-md-right">{{ __('Client Address') }}</label>
 
                             <div class="col-md-6">
                             <input id="client_address" type="text" class="form-control" name="client_address">
@@ -103,7 +103,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-danger">
                                     {{ __('Register') }}
                                 </button>
                             </div>
@@ -116,13 +116,11 @@
 </div>
 @endsection
 <script>
-    
-
     function changeFields() {
         const client = document.getElementById("client");
         const market_address = document.getElementById("market_add");
         const market_name = document.getElementById("market_na");
-        
+
         if (document.getElementById("role").value == "Client"){
             market_address.style.display = "none";
             market_name.style.display = "none";

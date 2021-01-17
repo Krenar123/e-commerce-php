@@ -65,11 +65,16 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $errors = $this->validator($data);
+        
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'role' => $data['role'],
+            'market_name' => $data['market_name'],
+            'market_address' => $data['market_address'],
+            'client_address' => $data['client_address'],
         ]);
     }
 }
