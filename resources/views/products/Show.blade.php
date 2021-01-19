@@ -23,7 +23,7 @@
         <div class="col-md-6">
             <div class="row">
                 <div class="col-md-12">
-                    <h1 style="font-size:30px;">Kodak 'Brownie' Flash B Camera</h1>
+                    <h1 style="font-size:30px;">{{ $product->product_name }}</h1>
                 </div>
             </div>
             <div class="row" style="margin-top:10px;">
@@ -34,11 +34,11 @@
             <div class="row" style="margin-top:10px; margin-bottom:10px;">
                 <div class="col-md-3">
                     <span class="sr-only">Four out of Five Stars</span>
-                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                    <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                    <span style="color:#1266f1;" class="fas fa-star" aria-hidden="true"></span>
+                    <span style="color:#1266f1;" class="fas fa-star" aria-hidden="true"></span>
+                    <span style="color:#1266f1;" class="fas fa-star" aria-hidden="true"></span>
+                    <span style="color:#1266f1;" class="fas fa-star" aria-hidden="true"></span>
+                    <span style="color:#1266f1;" class="far fa-star" aria-hidden="true"></span>
                 </div>
             </div><!-- end row -->
             <div class="row" style="margin-top:10px; margin-bottom:10px;">
