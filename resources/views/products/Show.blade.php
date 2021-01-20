@@ -12,7 +12,7 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-right">
-                <a style="margin-left:60px;" class="btn btn-light" href="{{ route('products.index') }}">Go back</a>
+                <a  class="btn btn-light" href="{{ route('products.index') }}">Go back</a>
             </div>
         </div>
     </div>
