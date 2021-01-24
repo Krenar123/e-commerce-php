@@ -11,11 +11,17 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
     
+
+    public function products(){
+        return $this->hasMany(Product::class);
+    }
+    
     protected $attributes = [
         'client_address' => "",
         'market_address' => "",
         'market_name' => "",
      ];
+
 
     /**
      * The attributes that are mass assignable.

@@ -43,8 +43,22 @@ class ProductController extends Controller
             'product_category' => 'required',
             'product_size' => 'required',
             'product_price' => 'required',
+            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
         ]);
 
+        if($request->hasFile('image'))
+        {
+            $destination_path = 'public/images/products';
+            $image = $request->file('image');
+            $image_name = $request->file('image')->getClientOriginalName();
+            $path = $request->file('image')->storeAs($destination_path, $image_name);
+            $requestData = $request->all();
+            $requestData['image'] = $image_name;
+        }
+        
+        $request->merge([
+            'image' => $request->file('image')->getClientOriginalName(),
+        ]);
         Product::create($request->all());
 
         return redirect()->route('products.index');

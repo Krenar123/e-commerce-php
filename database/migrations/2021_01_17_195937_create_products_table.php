@@ -18,7 +18,9 @@ class CreateProductsTable extends Migration
             $table->string('product_name');
             $table->string('product_price');
             $table->string('product_size');
+            $table->bigInteger('user_id')->unsigned();
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

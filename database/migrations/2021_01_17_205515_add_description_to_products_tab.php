@@ -26,7 +26,7 @@ class AddDescriptionToProductsTab extends Migration
     public function down()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->dropColumn('product_desciption');
+            //$table->dropColumn('product_desciption');
         });
     }
 }

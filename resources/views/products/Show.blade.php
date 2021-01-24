@@ -18,7 +18,7 @@
     </div>
     <div class="row" style="margin-top:20px;">
         <div class="col-md-6" style="height:600px; text-align:center;">
-            <img style="height:100%; border-radius:10px;" src="/img/milk.jpg" alt="Kodak Brownie Flash B Camera" class="image-responsive"/>
+            <img style="height:100%; border-radius:10px;" src="{{asset('/storage/images/products/'.$product->image)}}" alt="Kodak Brownie Flash B Camera" class="image-responsive"/>
         </div>
         <div class="col-md-6">
             <div class="row">

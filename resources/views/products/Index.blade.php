@@ -34,7 +34,7 @@
                                 <p class="card-text" style="font-size:14px;"><i>{{ \Illuminate\Support\Str::limit($product->product_description, 25, '...') }}</i></p>
                                 <p class="card-text"> <span class="is-danger" style="font-size:14px;color:#dc3545;font-weight:bold;">{{ $product->product_price }}</span> / <span style="font-size:13px; font-weight:bold;">{{ $product->product_size }}</span></p>
                                 <hr style="margin: 0.5rem 0;">
-                                @if ( Auth::check() && Auth::user()->role == "Market owner" )
+                                @if ( Auth::check() && Auth::user()->role == "Market owner" && Auth::user()->id == $product->user_id)
                                     <form action="{{ route('products.destroy', $product->id) }}" method="POST">
                                         <a class="is-primary" href="{{ route('products.edit', $product->id) }}">Edit product</a>
 
