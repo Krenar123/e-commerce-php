@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Cart;
 use Illuminate\Http\Request;
+use Session;
 
 class ProductController extends Controller
 {
@@ -72,9 +74,42 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        return view('products.Show',compact('product'));
+        $carts_count = Cart::where(['session_id' => session()->getId()])->count();
+        return view('products.Show',compact(['product', 'carts_count']));
     }
 
+    public function addtocart(Request $request){
+        if($request->isMethod('post')){
+            $data = $request->all();
+
+            $getProductPrice = Product::where(['id' => $data['product_id']])->first();
+
+            $session_id = Session::get('session_id');
+            if(empty($session_id)){
+                $session_id = Session::getId();
+                Session::put('session_id', $session_id);
+            }
+
+            /*
+            Ktu nese implementohet per sa produkte jan edhe nuk ka produkte mos lejo mu bo add
+            $countProducts = Cart::where(['product_id' => $data['product_id'], 'quantity' => $data['quantity']])->count();
+            if( $countProducts > 0){
+                $message = "No more of these products!";
+                session::flash('error_message', $message);
+                return redirect()->back();
+            }   
+            */
+            Cart::insert(['session_id' => $session_id, 'user_id' => auth()->id(), 'product_id' => $data['product_id'], 'quantity' => $data['quantity']]);
+            $message = "Product added to the cart";
+            session::flash('success_message', $message);
+            return redirect()->back();
+        }
+    }
+
+    public function cart($id){
+        $carts = Cart::where(['session_id' => session()->getId()]);
+        return view('products.Cart',compact('carts'));
+    }
     /**
      * Show the form for editing the specified resource.
      *

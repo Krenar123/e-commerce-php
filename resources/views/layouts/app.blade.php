@@ -43,6 +43,7 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
+                        
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
@@ -86,6 +87,11 @@
             });
         </script>
         <main class="py-4">
+            @if(Session::has('success_message'))
+                <div class="alert alert-success fade show" role="alert">
+                    {{ Session::get('success_message') }}
+                </div>
+            @endif
             @yield('content')
         </main>
     </div>

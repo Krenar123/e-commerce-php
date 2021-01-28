@@ -11,7 +11,7 @@
                     <h2 style="float:left; font-size:30px; font-weight:bold;">All products</h2>
                     @if ( Auth::check() && Auth::user()->role == "Market owner" )
                         <div class="pull-right">
-                            <a style="float:right;" class="btn btn-danger" href="{{ route('products.create') }}">Create new product</a>
+                            <a style="float:right;color: #dc3545;" class="btn btn-light" href="{{ route('products.create') }}">Create new product</a>
                         </div>
                     @endif
                 </div>
@@ -36,15 +36,16 @@
                                 <hr style="margin: 0.5rem 0;">
                                 @if ( Auth::check() && Auth::user()->role == "Market owner" && Auth::user()->id == $product->user_id)
                                     <form action="{{ route('products.destroy', $product->id) }}" method="POST">
-                                        <a class="is-primary" href="{{ route('products.edit', $product->id) }}">Edit product</a>
+                                        <a class="btn btn-danger" href="{{ route('products.show', $product->id) }}" style="padding-left:10px;padding-right:10px;">Shop Product</a>
+                                        <a class="is-primary" href="{{ route('products.edit', $product->id) }}" style="font-size:13px;">Edit product</a>
 
                                         @csrf
                                         @method("DELETE")
 
-                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                        <button type="submit" style="border:none; background-color:white;font-size:13px;">Delete</button>
                                     </form>
                                 @else
-                                    <a class="is-info" href="{{ route('products.show', $product->id) }}">Show product</a>
+                                    <a class="btn btn-danger" href="{{ route('products.show', $product->id) }}" style="padding-left:10px;padding-right:10px;">Shop Product</a>
                                 @endif
                             </div>
                         </div>

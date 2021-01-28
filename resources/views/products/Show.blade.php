@@ -9,10 +9,16 @@
     .add-to-cart .btn { border-radius: 0; }
 </style>
 <div class="container" id="product-section">
-    <div class="row">
+    <div class="row" style="margin-top:20px;">
         <div class="col-lg-12 margin-tb">
-            <div class="pull-right">
+            <div class="pull-right" style="float:left;">
                 <a  class="btn btn-light" href="{{ route('products.index') }}">Go back</a>
+            </div>
+            <div style="display:flex; align-items:center;font-size:25px;margin-right:10px; color: #dc3545; float:right;">
+                <a href="/cart/{{ Auth::user()->id }}">
+                <i class="fas fa-shopping-basket"></i>
+                <span style="font-size:15px; font-weight:bold; position:relative;top:-10px; left:-5px;">{{ $carts_count }}</span>
+                </a>
             </div>
         </div>
     </div>
@@ -66,9 +72,14 @@
                     </span>
                 </div>
                 <div class="col-md-4">
-                    <button class="btn btn-lg btn-brand btn-full-width">
-                    Add to Cart
-                    </button>
+                    <form action="{{ url('add-to-cart') }}" method="post">
+                        @csrf
+                        <input type="hidden" name="product_id" value="{{ $product->id }}"/>
+                        <input type="hidden" name="quantity" value="1"/>
+                        <button type="submit" class="btn btn-lg btn-brand btn-full-width">
+                        Add to Cart
+                        </button>
+                    </form>
                 </div>
             </div><!-- end row -->
         </div>
