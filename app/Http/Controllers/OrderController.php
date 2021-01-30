@@ -48,7 +48,7 @@ class OrderController extends Controller
         foreach($carts as $cart) {
             $product = Product::find($cart->product_id);
             Product::find($cart->product_id)->increment('ordered' , $cart->quantity);
-            Notification::insert(['market_id' => $product->user_id, 'product_name' => $product->product_name,'address' => $request['address'], 'shipping_price' => '','quantity' => $cart->quantity, 'price' => $product->product_name]);
+            Notification::insert(['market_id' => $product->user_id, 'product_name' => $product->product_name,'address' => $request['address'],'email' => $request['email'], 'shipping_price' => '','quantity' => $cart->quantity, 'price' => $product->product_name]);
         }
         Order::create($request->all());
 

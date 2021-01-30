@@ -26,4 +26,4 @@ Route::get('/cart', [App\Http\Controllers\ProductController::class, 'cart'])->na
 Route::delete('/deletecart/{id}', [App\Http\Controllers\ProductController::class, 'deletecart'])->name('products.deletecart');
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\ProductController::class, 'index'])->name('home');
