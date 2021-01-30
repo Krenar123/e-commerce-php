@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Product;
+use App\Models\Cart;
 use Illuminate\Http\Request;
+use Session;
+use Auth;
 
-class PhotoController extends Controller
+class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +18,9 @@ class PhotoController extends Controller
      */
     public function index()
     {
-        //
+        $orders = Order::where('user_id', auth()->id())->paginate(5);
+        return view('orders.Index', compact('orders'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -24,7 +30,9 @@ class PhotoController extends Controller
      */
     public function create()
     {
-        //
+        $carts_elem = Cart::where(['user_id' => auth()->id()])->paginate(5);
+        return view('orders.Create', compact('carts_elem'))
+                    ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -35,7 +43,17 @@ class PhotoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $carts = Cart::where('user_id', auth()->id())->get();
+        foreach($carts as $cart) {
+            Product::find($cart->product_id)->increment('ordered' , $cart->quantity);
+        }
+        Order::create($request->all());
+
+        Cart::where('user_id', auth()->id())->delete();
+
+        $message = "The order was received successfully!";
+        session::flash('success_message', $message);
+        return redirect()->route('orders.index');
     }
 
     /**

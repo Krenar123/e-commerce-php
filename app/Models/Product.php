@@ -12,6 +12,7 @@ class Product extends Model
 
     protected $attributes = [
         'image' => "",
+        'ordered' => 1,
      ];
 
     public function user(){
@@ -22,6 +23,7 @@ class Product extends Model
     {
         static::creating(function ($product) {
             $product->user_id = Auth::id();
+            $product->ordered = 1;
         });
     }
     /**

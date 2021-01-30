@@ -76,7 +76,7 @@
                             <p class="card-text">Shipping <span id="shipping" style="float:right;">$ {{ $shipping_price }}</span></p>
                             <hr>
                             <p class="card-text" style="margin-bottom:25px;"><b>Total <span id="total" style="float:right;">$ {{ $total_price }}</span><b></p>
-                            <a href="#" class="btn btn-primary" style="width:100%;background:#ff4747;border:#ff4747;">Checkout</a>
+                            <a href="{{ route('orders.create') }}" class="btn btn-primary" style="width:100%;background:#ff4747;border:#ff4747;">Checkout</a>
                         </div>
                     </div>
                 </div>

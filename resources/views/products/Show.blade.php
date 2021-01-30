@@ -70,7 +70,7 @@
             <div class="row" style=" margin-bottom:10px;">
                 <div class="col-md-12">
                     <p class="description">
-                        Free shipping on orders over <b>MKD 300</b>
+                        Free shipping on orders over <b>USD 5</b>
                     </p>
                 </div>
             </div><!-- end row -->

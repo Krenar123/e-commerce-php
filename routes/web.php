@@ -18,6 +18,8 @@ Route::get('/', function () {
 });
 
 Route::resource('products', 'App\Http\Controllers\ProductController');
+Route::resource('orders', 'App\Http\Controllers\OrderController');
+
 Route::post('/add-to-cart', [App\Http\Controllers\ProductController::class, 'addtocart']);
 Route::get('/cart', [App\Http\Controllers\ProductController::class, 'cart'])->name('products.Cart');;
 Route::delete('/deletecart/{id}', [App\Http\Controllers\ProductController::class, 'deletecart'])->name('products.deletecart');

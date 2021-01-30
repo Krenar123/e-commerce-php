@@ -16,10 +16,11 @@
                     @if ( Auth::check() && Auth::user()->role == "Market owner" )
                         <div class="pull-right">
                             <a style="float:right;color: #ff4747;" class="btn btn-light" href="{{ route('products.create') }}">Create new product</a>
-                            <a style="margin-right: 10px; float:right;color: #ff4747;" class="btn btn-light" href="{{ route('products.create') }}">Orders</a>
+                            <a style="margin-right: 10px; float:right;color: #ff4747;" class="btn btn-light" href="{{ route('products.notification') }}">Products</a>
                         </div>
                     @else
                     <div style="display:flex; align-items:center;font-size:25px;margin-right:10px; color: #ff4747; float:right;">
+                        <a style="margin-right: 20px; float:right;color: #ff4747;" class="btn btn-light" href="{{ route('orders.index') }}">Orders</a>
                         <a href="/cart" id="shoppingbasket">
                         <i class="fas fa-shopping-basket"></i>
                         <span style="font-size:15px; font-weight:bold; position:relative;top:-10px; left:-5px;">{{ $carts_count }}</span>
@@ -45,7 +46,7 @@
                             <div class="card-body">
                                 <h5 class="card-title" style="color:black; font-weight:bold;">{{$product->product_name}}</h5>
                                 <!-- <p class="card-text" style="font-size:14px;"><i>{{ \Illuminate\Support\Str::limit($product->product_description, 25, '...') }}</i></p> -->
-                                <p class="card-text"> <span class="is-danger" style="font-size:14px;color:#ff4747;font-weight:bold;">{{ $product->product_price }}</span> / <span style="font-size:13px; font-weight:bold;">{{ $product->product_size }}</span></p>
+                                <p class="card-text"> <span class="is-danger" style="font-size:14px;color:#ff4747;font-weight:bold;">{{ $product->product_price }}</span> / <span style="font-size:13px; font-weight:bold;">{{ $product->product_size }}</span> <span style=" font-size: 12px; margin-top:5px; float:right;">{{ $product->ordered}} orders</span></p>
                                 <hr style="margin: 0.5rem 0;">
                                 @if ( Auth::check() && Auth::user()->role == "Market owner" && Auth::user()->id == $product->user_id)
                                     <form action="{{ route('products.destroy', $product->id) }}" method="POST">
@@ -58,7 +59,7 @@
                                         <button type="submit" style="border:none; background-color:white;font-size:13px;">Delete</button>
                                     </form>
                                 @else
-                                    <a class="btn btn-danger" href="{{ route('products.show', $product->id) }}" style="padding-left:10px;padding-right:10px; background:#ff4747; border:#ff4747;">Shop Product</a>
+                                    <a class="btn btn-danger" href="{{ route('products.show', $product->id) }}" style="padding-left:10px;padding-right:10px; background:#ff4747; border:#ff4747; width:100%;">Shop Product</a>
                                 @endif
                             </div>
                         </div>
