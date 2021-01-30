@@ -1,6 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
+<script
+    src="https://www.paypal.com/sdk/js?client-id=AboupUI-KC8WGpDSJ9r7evB5gT0z4DyAsl5onAeAFkLLGQyC-lOBjg107XxNgon-w28iGAoirkjbZwtz"> // Required. Replace SB_CLIENT_ID with your sandbox client ID.
+</script>
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -12,6 +16,7 @@
                 ?>
                 @foreach ($carts_elem as $product)
                     <?php
+                        $email = Auth::user()->email;
                         $tmp = \App\Models\Product::find($product->product_id);
                         $all_products .= $tmp->product_name." ".$tmp->product_price." ->".$product->quantity.";";
                         $total_price += ( (int)preg_replace("/[^0-9.]/", "", $tmp->product_price) * (int)preg_replace("/[^0-9.]/", "", $product->quantity) );
@@ -24,7 +29,7 @@
                 ?>
                 <div class="card-body">
                     <p style="text-align:center; max-width:330px; margin:0 auto; margin-bottom:30px; color: grey;"><i>Before you do the checkout, be aware that you get free shipping only if you order over <b>USD 5</b></i></p>
-                    <form method="POST" action="{{ route('orders.store') }}" >
+                    <form method="POST" action="{{ route('orders.store') }}" id="myForm">
                         @csrf
 
                         <div class="form-group row">
@@ -45,7 +50,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Email') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" required autocomplete="email" placeholder="someone@example.com">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" required autocomplete="email" placeholder="someone@example.com" value="{{ $email }}">
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -98,9 +103,40 @@
                             </div>
                         </div>
                     </form>
+                    <div class="row" style="margin-top:20px;">
+                    <div class="offset-md-4 col-md-6">
+                        <div id="paypal-button-container" ></div>
+                    </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script>
+  paypal.Buttons({
+    createOrder: function(data, actions) {
+      // This function sets up the details of the transaction, including the amount and line item details.
+      return actions.order.create({
+        purchase_units: [{
+          amount: {
+            value: '0.01'
+          }
+        }]
+      });
+    },
+    onApprove: function(data, actions) {
+      // This function captures the funds from the transaction.
+      return actions.order.capture().then(function(details) {
+        // This function shows a transaction success message to your buyer.
+        document.getElementById("name").value = "Paypal";
+        document.getElementById("city").value = "Skopje";
+        document.getElementById("address").value = "Vizbegovo ul.3";
+        document.getElementById("myForm").submit();
+      });
+    }
+  }).render('#paypal-button-container');
+  //This function displays Smart Payment Buttons on your web page.
+</script>
+
 @endsection

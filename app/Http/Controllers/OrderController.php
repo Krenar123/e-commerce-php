@@ -44,14 +44,15 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
+        $order = Order::create($request->all());
+
         $carts = Cart::where('user_id', auth()->id())->get();
         foreach($carts as $cart) {
             $product = Product::find($cart->product_id);
             Product::find($cart->product_id)->increment('ordered' , $cart->quantity);
-            Notification::insert(['market_id' => $product->user_id, 'product_name' => $product->product_name,'address' => $request['address'],'email' => $request['email'], 'shipping_price' => '','quantity' => $cart->quantity, 'price' => $product->product_name]);
+            Notification::insert(['market_id' => $product->user_id, 'order_id' => $order->id,'product_name' => $product->product_name,'address' => $request['city'].', '.$request['address'], 'email' => $request['email'], 'shipping_price' => '','quantity' => $cart->quantity, 'price' => $product->product_price]);
         }
-        Order::create($request->all());
-
+        
         Cart::where('user_id', auth()->id())->delete();
 
         $message = "The order was received successfully!";

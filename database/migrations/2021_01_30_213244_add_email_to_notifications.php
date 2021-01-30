@@ -15,6 +15,7 @@ class AddEmailToNotifications extends Migration
     {
         Schema::table('notifications', function (Blueprint $table) {
             $table->string('email');
+            $table->integer('order_id');
         });
     }
 
@@ -27,6 +28,7 @@ class AddEmailToNotifications extends Migration
     {
         Schema::table('notifications', function (Blueprint $table) {
             $table->dropColumn('email');
+            $table->dropColumn('order_id');
         });
     }
 }

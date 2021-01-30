@@ -31,9 +31,10 @@
                             <div class="card-body">
                                 <h5 class="card-title" style="font-size: 20px; color:#333; font-weight:bold;"><u>{{$notification->product_name}}</u></h5>
                                 <!-- <p class="card-text" style="font-size:14px;"><i>{{ \Illuminate\Support\Str::limit($notification->product_description, 25, '...') }}</i></p> -->
-                                <p class="card-text"> <span class="is-danger" style="font-size:17px;color:#ff4747;font-weight:bold;"><span style="color:black;">Price:</span> $ {{ $notification->price }}</span> <span style="float:right;font-size:14px;color:black;font-weight:400;">{{ $notification->quantity }} pc.</span></p>
+                                <p class="card-text"> <span class="is-danger" style="font-size:17px;color:#ff4747;font-weight:bold;"><span style="color:black;">Price:</span> {{ $notification->price }}</span> <span style="float:right;font-size:14px;color:black;font-weight:400;">{{ $notification->quantity }} pc.</span></p>
                                 <hr style="margin: 0.5rem 0;">
                                 <h5 class="card-title" style="color:black; ">Address: {{$notification->address}}</h5>
+                                <h5 class="card-title" style="color:black; ">Order: {{$notification->order_id}}</h5>
                             </div>
                         </div>
                     </div>
