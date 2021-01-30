@@ -26,11 +26,12 @@
                         ?>
                         <div class="card mb-3" >
                             <div class="row g-0">
-                                <div class="col-md-2">
-                                    <img src="..." alt="...">
+                                <div class="col-md-3" style="padding-right:0;">
+                                    <img style="width:100%;" src="{{asset('/storage/images/empty.png')}}" alt="empty">
                                 </div>
-                                <div class="col-md-10">
-                                    <div class="card-body">
+                                <div class="col-md-9">
+                                    <div class="card-body" style="height:100%; display:flex; align-items:center;">
+                                        <div style="width:100%;">
                                         <h5 class="card-title" style="font-weight:bold; font-size:20px;">{{ $tmp->product_name }}</h5>
                                         <p class="card-text"><i>{{ $tmp->product_description }}</i></p>
                                         <p class="card-text"> <span class="is-danger" style="font-size:14px;color:#ff4747;font-weight:bold;">{{ $tmp->product_price }}</span> / <span style="font-size:13px; font-weight:bold;">{{ $tmp->product_size }}</span>
@@ -42,6 +43,7 @@
                                                 </form>    
                                             </span>
                                         </p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -60,7 +62,7 @@
                             <p class="card-text">Shipping <span id="shipping" style="float:right;">$</span></p>
                             <hr>
                             <p class="card-text" style="margin-bottom:25px;"><b>Total <span id="total" style="float:right;">$</span><b></p>
-                            <a href="#" class="btn btn-primary" style="width:100%;background:#ff4747;border:#ff4747;">Go somewhere</a>
+                            <a href="#" class="btn btn-primary" style="width:100%;background:#ff4747;border:#ff4747;">Checkout</a>
                         </div>
                     </div>
                 </div>

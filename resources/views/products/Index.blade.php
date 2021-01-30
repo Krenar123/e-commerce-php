@@ -37,14 +37,14 @@
             @endif
 
 
-            <div class="row" style="margin-top:60px;">        
+            <div class="row" style="margin-top:50px;">        
                 @foreach ($products as $product)
-                    <div class="col-md-4 col-sm-12" style="margin-bottom:20px;">
+                    <div class="col-md-3 col-sm-12" style="margin-bottom:20px;">
                         <div class="card">
-                            <img class="card-img-top" src="..." alt="Card image cap">
+                            <img class="card-img-top" src="{{asset('/storage/images/empty.png')}}" alt="Card image cap">
                             <div class="card-body">
                                 <h5 class="card-title" style="color:black; font-weight:bold;">{{$product->product_name}}</h5>
-                                <p class="card-text" style="font-size:14px;"><i>{{ \Illuminate\Support\Str::limit($product->product_description, 25, '...') }}</i></p>
+                                <!-- <p class="card-text" style="font-size:14px;"><i>{{ \Illuminate\Support\Str::limit($product->product_description, 25, '...') }}</i></p> -->
                                 <p class="card-text"> <span class="is-danger" style="font-size:14px;color:#ff4747;font-weight:bold;">{{ $product->product_price }}</span> / <span style="font-size:13px; font-weight:bold;">{{ $product->product_size }}</span></p>
                                 <hr style="margin: 0.5rem 0;">
                                 @if ( Auth::check() && Auth::user()->role == "Market owner" && Auth::user()->id == $product->user_id)
