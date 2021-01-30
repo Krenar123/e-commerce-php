@@ -11,7 +11,7 @@
                     <h2 style="float:left; font-size:30px; font-weight:bold;">All products</h2>
                     @if ( Auth::check() && Auth::user()->role == "Market owner" )
                         <div class="pull-right">
-                            <a style="float:right;color: #dc3545;" class="btn btn-light" href="{{ route('products.create') }}">Create new product</a>
+                            <a style="float:right;color: #ff4747;" class="btn btn-light" href="{{ route('products.create') }}">Create new product</a>
                         </div>
                     @endif
                 </div>
@@ -32,11 +32,11 @@
                             <div class="card-body">
                                 <h5 class="card-title" style="color:black; font-weight:bold;">{{$product->product_name}}</h5>
                                 <p class="card-text" style="font-size:14px;"><i>{{ \Illuminate\Support\Str::limit($product->product_description, 25, '...') }}</i></p>
-                                <p class="card-text"> <span class="is-danger" style="font-size:14px;color:#dc3545;font-weight:bold;">{{ $product->product_price }}</span> / <span style="font-size:13px; font-weight:bold;">{{ $product->product_size }}</span></p>
+                                <p class="card-text"> <span class="is-danger" style="font-size:14px;color:#ff4747;font-weight:bold;">{{ $product->product_price }}</span> / <span style="font-size:13px; font-weight:bold;">{{ $product->product_size }}</span></p>
                                 <hr style="margin: 0.5rem 0;">
                                 @if ( Auth::check() && Auth::user()->role == "Market owner" && Auth::user()->id == $product->user_id)
                                     <form action="{{ route('products.destroy', $product->id) }}" method="POST">
-                                        <a class="btn btn-danger" href="{{ route('products.show', $product->id) }}" style="padding-left:10px;padding-right:10px;">Shop Product</a>
+                                        <a class="btn btn-danger" href="{{ route('products.show', $product->id) }}" style="padding-left:10px;padding-right:10px; background:#ff4747; border:#ff4747;">Shop Product</a>
                                         <a class="is-primary" href="{{ route('products.edit', $product->id) }}" style="font-size:13px;">Edit product</a>
 
                                         @csrf
@@ -45,7 +45,7 @@
                                         <button type="submit" style="border:none; background-color:white;font-size:13px;">Delete</button>
                                     </form>
                                 @else
-                                    <a class="btn btn-danger" href="{{ route('products.show', $product->id) }}" style="padding-left:10px;padding-right:10px;">Shop Product</a>
+                                    <a class="btn btn-danger" href="{{ route('products.show', $product->id) }}" style="padding-left:10px;padding-right:10px; background:#ff4747; border:#ff4747;">Shop Product</a>
                                 @endif
                             </div>
                         </div>

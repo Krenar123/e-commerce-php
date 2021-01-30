@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\Cart;
 use Illuminate\Http\Request;
 use Session;
+use Auth;
 
 class ProductController extends Controller
 {
@@ -74,7 +75,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        $carts_count = Cart::where(['session_id' => session()->getId()])->count();
+        $carts_count = Cart::where(['user_id' => auth()->id()])->count();
         return view('products.Show',compact(['product', 'carts_count']));
     }
 
@@ -106,9 +107,16 @@ class ProductController extends Controller
         }
     }
 
-    public function cart($id){
-        $carts = Cart::where(['session_id' => session()->getId()]);
-        return view('products.Cart',compact('carts'));
+    public function cart(){
+        $carts_elem = Cart::where(['user_id' => auth()->id()])->paginate(5);
+        return view('products.Cart', compact('carts_elem'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
+    }
+
+    public function deletecart($id){
+        Cart::where(['id' => $id])->first()->delete();
+
+        return redirect()->route('products.Cart');
     }
     /**
      * Show the form for editing the specified resource.

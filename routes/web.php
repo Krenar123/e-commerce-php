@@ -19,8 +19,8 @@ Route::get('/', function () {
 
 Route::resource('products', 'App\Http\Controllers\ProductController');
 Route::post('/add-to-cart', [App\Http\Controllers\ProductController::class, 'addtocart']);
-Route::get('/cart/{id}', [App\Http\Controllers\ProductController::class, 'cart']);
-
+Route::get('/cart', [App\Http\Controllers\ProductController::class, 'cart'])->name('products.Cart');;
+Route::delete('/deletecart/{id}', [App\Http\Controllers\ProductController::class, 'deletecart'])->name('products.deletecart');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
