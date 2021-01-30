@@ -1,7 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-
+<style>
+    #shoppingbasket{
+        text-decoration:none;
+    }
+</style>
 <div class="container" style="margin-top:20px;">
     <div class="row justify-content-center">
         <div class="col-md-10">
@@ -12,8 +16,17 @@
                     @if ( Auth::check() && Auth::user()->role == "Market owner" )
                         <div class="pull-right">
                             <a style="float:right;color: #ff4747;" class="btn btn-light" href="{{ route('products.create') }}">Create new product</a>
+                            <a style="margin-right: 10px; float:right;color: #ff4747;" class="btn btn-light" href="{{ route('products.create') }}">Orders</a>
                         </div>
+                    @else
+                    <div style="display:flex; align-items:center;font-size:25px;margin-right:10px; color: #ff4747; float:right;">
+                        <a href="/cart" id="shoppingbasket">
+                        <i class="fas fa-shopping-basket"></i>
+                        <span style="font-size:15px; font-weight:bold; position:relative;top:-10px; left:-5px;">{{ $carts_count }}</span>
+                        </a>
+                    </div>
                     @endif
+                    
                 </div>
             </div>
 

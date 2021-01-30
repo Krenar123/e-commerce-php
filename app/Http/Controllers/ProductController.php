@@ -18,7 +18,8 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::latest()->paginate(5);
-        return view('products.Index', compact('products'))
+        $carts_count = Cart::where(['user_id' => auth()->id()])->count();
+        return view('products.Index', compact(['products', 'carts_count']))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -159,6 +160,8 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
+        $cart_products = Cart::where('product_id', $product->id)->delete();
+
         $product->delete();
 
         return redirect()->route('products.index');

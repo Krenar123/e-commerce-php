@@ -53,7 +53,16 @@
         <div class="col-md-4 col-lg-4">
             <div class="row">
                 <div class="col-md-12">
-                    <p>Krenar 123</p>
+                    <div class="card">
+                        <div class="card-body">
+                            <h2 class="card-title" style="font-size:25px;font-weight:bold;">Order Summary</h2>
+                            <p class="card-text">Subtotal <span id="subtotal" style="float:right;">$</span></p>
+                            <p class="card-text">Shipping <span id="shipping" style="float:right;">$</span></p>
+                            <hr>
+                            <p class="card-text" style="margin-bottom:25px;"><b>Total <span id="total" style="float:right;">$</span><b></p>
+                            <a href="#" class="btn btn-primary" style="width:100%;background:#ff4747;border:#ff4747;">Go somewhere</a>
+                        </div>
+                    </div>
                 </div>
             </div> 
         </div>
