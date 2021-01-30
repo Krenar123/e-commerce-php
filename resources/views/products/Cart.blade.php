@@ -16,6 +16,10 @@
             </div>
         </div>
     </div>
+    <?php
+        $shipping_price = 2;
+        $total_price = 0;
+    ?>
     <div class="row" style="margin-top:60px;"> 
         <div class="col-md-8 col-lg-8">
             <div class="row">
@@ -23,6 +27,7 @@
                     <div class="col-md-12">
                         <?php
                             $tmp = \App\Models\Product::find($product->product_id);
+                            $total_price += ( (int)preg_replace("/[^0-9.]/", "", $tmp->product_price) * (int)preg_replace("/[^0-9.]/", "", $product->quantity) );
                         ?>
                         <div class="card mb-3" >
                             <div class="row g-0">
@@ -52,16 +57,25 @@
                 @endforeach
             </div>
         </div>
+        <?php
+            $subtotal = $total_price;
+            if( ($total_price >= 5) || ($total_price == 0) ){
+                $shipping_price = 0;
+            }
+            else {
+                $total_price += $shipping_price;
+            }
+        ?>
         <div class="col-md-4 col-lg-4">
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
                             <h2 class="card-title" style="font-size:25px;font-weight:bold;">Order Summary</h2>
-                            <p class="card-text">Subtotal <span id="subtotal" style="float:right;">$</span></p>
-                            <p class="card-text">Shipping <span id="shipping" style="float:right;">$</span></p>
+                            <p class="card-text">Subtotal <span id="subtotal" style="float:right;">$ {{ $subtotal }}</span></p>
+                            <p class="card-text">Shipping <span id="shipping" style="float:right;">$ {{ $shipping_price }}</span></p>
                             <hr>
-                            <p class="card-text" style="margin-bottom:25px;"><b>Total <span id="total" style="float:right;">$</span><b></p>
+                            <p class="card-text" style="margin-bottom:25px;"><b>Total <span id="total" style="float:right;">$ {{ $total_price }}</span><b></p>
                             <a href="#" class="btn btn-primary" style="width:100%;background:#ff4747;border:#ff4747;">Checkout</a>
                         </div>
                     </div>
