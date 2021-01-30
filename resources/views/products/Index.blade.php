@@ -42,7 +42,11 @@
                 @foreach ($products as $product)
                     <div class="col-md-3 col-sm-12" style="margin-bottom:20px;">
                         <div class="card">
-                            <img class="card-img-top" src="{{asset('/storage/images/empty.png')}}" alt="Card image cap">
+                            @if ($product->image == "")
+                                <img class="card-img-top" src="{{asset('/storage/images/empty.png')}}" alt="Card image cap">
+                            @else 
+                                <img class="card-img-top" style="max-height:248px;" src="{{asset('/storage/images/products/'.$product->image)}}" alt="Card image cap">
+                            @endif
                             <div class="card-body">
                                 <h5 class="card-title" style="color:black; font-weight:bold;">{{$product->product_name}}</h5>
                                 <!-- <p class="card-text" style="font-size:14px;"><i>{{ \Illuminate\Support\Str::limit($product->product_description, 25, '...') }}</i></p> -->

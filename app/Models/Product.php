@@ -10,11 +10,6 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $attributes = [
-        'image' => "",
-        'ordered' => 0,
-     ];
-
     public function user(){
         return $this->belongsTo(User::class);
     }
@@ -23,7 +18,7 @@ class Product extends Model
     {
         static::creating(function ($product) {
             $product->user_id = Auth::id();
-            $product->ordered = 1;
+            $product->ordered = 0;
         });
     }
     /**
@@ -37,5 +32,6 @@ class Product extends Model
         'product_size',
         'product_description',
         'product_category',
+        'image',
     ];
 }

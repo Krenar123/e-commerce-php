@@ -57,14 +57,13 @@ class ProductController extends Controller
             $image = $request->file('image');
             $image_name = $request->file('image')->getClientOriginalName();
             $path = $request->file('image')->storeAs($destination_path, $image_name);
-            $requestData = $request->all();
-            $requestData['image'] = $image_name;
         }
         
         $request->merge([
             'image' => $request->file('image')->getClientOriginalName(),
         ]);
-        Product::create($request->all());
+        $product = Product::create($request->all());
+        Product::find($product->id)->update(['image' => $request->file('image')->getClientOriginalName()]);
 
         return redirect()->route('products.index');
     }
