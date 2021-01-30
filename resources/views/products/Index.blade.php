@@ -16,7 +16,7 @@
                     @if ( Auth::check() && Auth::user()->role == "Market owner" )
                         <div class="pull-right">
                             <a style="float:right;color: #ff4747;" class="btn btn-light" href="{{ route('products.create') }}">Create new product</a>
-                            <a style="margin-right: 10px; float:right;color: #ff4747;" class="btn btn-light" href="{{ route('products.notification') }}">Products</a>
+                            <a style="margin-right: 10px; float:right;color: #ff4747;" class="btn btn-light" href="{{ route('notifications.index') }}">Notifications</a>
                         </div>
                     @else
                     <div style="display:flex; align-items:center;font-size:25px;margin-right:10px; color: #ff4747; float:right;">
@@ -49,14 +49,14 @@
                                 <p class="card-text"> <span class="is-danger" style="font-size:14px;color:#ff4747;font-weight:bold;">{{ $product->product_price }}</span> / <span style="font-size:13px; font-weight:bold;">{{ $product->product_size }}</span> <span style=" font-size: 12px; margin-top:5px; float:right;">{{ $product->ordered}} orders</span></p>
                                 <hr style="margin: 0.5rem 0;">
                                 @if ( Auth::check() && Auth::user()->role == "Market owner" && Auth::user()->id == $product->user_id)
-                                    <form action="{{ route('products.destroy', $product->id) }}" method="POST">
-                                        <a class="btn btn-danger" href="{{ route('products.show', $product->id) }}" style="padding-left:10px;padding-right:10px; background:#ff4747; border:#ff4747;">Shop Product</a>
-                                        <a class="is-primary" href="{{ route('products.edit', $product->id) }}" style="font-size:13px;">Edit product</a>
+                                    <form action="{{ route('products.destroy', $product->id) }}" method="POST" style="text-align:center; height:36px; padding-top:5px;">
+                                        <a class="is-danger" href="{{ route('products.show', $product->id) }}" style="font-size:14px; padding-left:5px;padding-right:10px; color:#ff4747; ">Show</a>
+                                        <a class="is-primary" href="{{ route('products.edit', $product->id) }}" style="font-size:14px;">Edit</a>
 
                                         @csrf
                                         @method("DELETE")
 
-                                        <button type="submit" style="border:none; background-color:white;font-size:13px;">Delete</button>
+                                        <button type="submit" style="border:none; background-color:white;font-size:14px;">Delete</button>
                                     </form>
                                 @else
                                     <a class="btn btn-danger" href="{{ route('products.show', $product->id) }}" style="padding-left:10px;padding-right:10px; background:#ff4747; border:#ff4747; width:100%;">Shop Product</a>

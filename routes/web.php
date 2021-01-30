@@ -19,6 +19,7 @@ Route::get('/', function () {
 
 Route::resource('products', 'App\Http\Controllers\ProductController');
 Route::resource('orders', 'App\Http\Controllers\OrderController');
+Route::resource('notifications', 'App\Http\Controllers\NotificationController');
 
 Route::post('/add-to-cart', [App\Http\Controllers\ProductController::class, 'addtocart']);
 Route::get('/cart', [App\Http\Controllers\ProductController::class, 'cart'])->name('products.Cart');;

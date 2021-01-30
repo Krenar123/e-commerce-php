@@ -17,12 +17,15 @@
             <div class="pull-right" style="float:left;">
                 <a  class="btn btn-light" href="{{ route('products.index') }}">Go back</a>
             </div>
+            @if ( Auth::check() && Auth::user()->role == "Market owner" )
+            @else
             <div style="display:flex; align-items:center;font-size:25px;margin-right:10px; color: #ff4747; float:right;">
                 <a href="/cart" id="shoppingbasket">
                 <i class="fas fa-shopping-basket"></i>
                 <span style="font-size:15px; font-weight:bold; position:relative;top:-10px; left:-5px;">{{ $carts_count }}</span>
                 </a>
             </div>
+            @endif
         </div>
     </div>
     <div class="row" style="margin-top:20px;">
@@ -112,9 +115,15 @@
                         @csrf
                         <input type="hidden" name="product_id" value="{{ $product->id }}"/>
                         <input type="hidden" name="quantity" value="1" id="addtocart"/>
+                        @if ( Auth::check() && Auth::user()->role == "Market owner" )
+                        <button type="submit" disabled class="btn btn-lg btn-brand btn-full-width" style="background:#ff4747; color:white; border-radius:5px; width:100%; font-size:17px;">
+                        Add to Cart
+                        </button>
+                        @else 
                         <button type="submit" class="btn btn-lg btn-brand btn-full-width" style="background:#ff4747; color:white; border-radius:5px; width:100%; font-size:17px;">
                         Add to Cart
                         </button>
+                        @endif
                     </form>
                 </div>
             </div><!-- end row -->

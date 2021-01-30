@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\Notification;
 use App\Models\Cart;
 use Illuminate\Http\Request;
 use Session;
@@ -45,7 +46,9 @@ class OrderController extends Controller
     {
         $carts = Cart::where('user_id', auth()->id())->get();
         foreach($carts as $cart) {
+            $product = Product::find($cart->product_id);
             Product::find($cart->product_id)->increment('ordered' , $cart->quantity);
+            Notification::insert(['market_id' => $product->user_id, 'product_name' => $product->product_name,'address' => $request['address'], 'shipping_price' => '','quantity' => $cart->quantity, 'price' => $product->product_name]);
         }
         Order::create($request->all());
 

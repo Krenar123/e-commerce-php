@@ -12,7 +12,7 @@ class Product extends Model
 
     protected $attributes = [
         'image' => "",
-        'ordered' => 1,
+        'ordered' => 0,
      ];
 
     public function user(){
