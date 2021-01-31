@@ -33,6 +33,9 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
+        'market_address',
+        'client_address',
+        'market_name',
     ];
 
     /**

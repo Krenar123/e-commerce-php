@@ -21,6 +21,15 @@ Route::resource('products', 'App\Http\Controllers\ProductController');
 Route::resource('orders', 'App\Http\Controllers\OrderController');
 Route::resource('notifications', 'App\Http\Controllers\NotificationController');
 
+Route::get('/admin/login', [App\Http\Controllers\AdminController::class, 'login']);
+Route::post('/admin/store', [App\Http\Controllers\AdminController::class, 'store'])->name('admin.store');
+Route::get('/admin/client', [App\Http\Controllers\AdminController::class, 'client'])->name('admin.client');
+Route::get('/admin/index', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.index');
+Route::get('/admin/clientedit/{id}', [App\Http\Controllers\AdminController::class, 'clientedit'])->name('admin.clientedit');
+Route::get('/admin/marketedit/{id}', [App\Http\Controllers\AdminController::class, 'marketedit'])->name('admin.marketedit');
+Route::put('/admin/update/{id}', [App\Http\Controllers\AdminController::class, 'update'])->name('admin.update');
+Route::delete('/admin/destroy/{id}', [App\Http\Controllers\AdminController::class, 'destroy'])->name('admin.destroy');
+
 Route::post('/add-to-cart', [App\Http\Controllers\ProductController::class, 'addtocart']);
 Route::get('/cart', [App\Http\Controllers\ProductController::class, 'cart'])->name('products.Cart');;
 Route::delete('/deletecart/{id}', [App\Http\Controllers\ProductController::class, 'deletecart'])->name('products.deletecart');
