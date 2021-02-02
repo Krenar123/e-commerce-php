@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
+use Illuminate\Http\Request;
+use App\Models\User;
 class LoginController extends Controller
 {
     /*
@@ -20,13 +21,26 @@ class LoginController extends Controller
     */
 
     use AuthenticatesUsers;
+    protected function authenticated(Request $request, $user)
+    {
+        if($user->hasRole('admin')){
+            return redirect('/admin/index');
+        }
 
+        if($user->hasRole('Client')){
+            return redirect('/products');
+        }
+
+        if($user->hasRole('Market Owner')){
+            return redirect('/products');
+        }
+    }
     /**
      * Where to redirect users after login.
      *
      * @var string
      */
-    protected $redirectTo = '/products';
+    // protected $redirectTo = '/products';
 
     /**
      * Create a new controller instance.

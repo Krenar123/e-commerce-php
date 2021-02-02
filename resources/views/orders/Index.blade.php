@@ -12,8 +12,8 @@
 
             <div class="row">
                 <div class="col-lg-12 margin-tb">
-                    <h2 style="float:left; font-size:30px; font-weight:bold;">All orders</h2>
-                    <a href="{{ route('products.index') }}" style="float:right;" class="btn btn-light">Go back</a>
+                    <h2 style="float:left; font-size:30px; font-weight:bold; font-family: 'Poppins', sans-serif;">All orders</h2>
+                    <a href="{{ route('products.index') }}" style="float:right; font-family: 'Poppins', sans-serif;" class="btn btn-light">Go back</a>
                 </div>
             </div>
 
@@ -29,12 +29,14 @@
                     <div class="col-md-12 col-sm-12" style="margin-bottom:20px;">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title" style="font-size: 20px; color:#333; font-weight:bold;"><u>{{$order->name}}</u></h5>
+                                <h5 class="card-title" style="font-size: 20px; color:#333; font-weight:bold; font-family: 'Poppins', sans-serif;"><u>{{$order->name}}</u></h5>
                                 <!-- <p class="card-text" style="font-size:14px;"><i>{{ \Illuminate\Support\Str::limit($order->product_description, 25, '...') }}</i></p> -->
-                                <p class="card-text"> <span class="is-danger" style="font-size:17px;color:#ff4747;font-weight:bold;"><span style="color:black;">Price:</span> $ {{ $order->price }}</span></p>
+                                <p class="card-text"> <span class="is-danger" style="font-size:17px;color:#ff4747;font-weight:bold;font-family: 'Poppins', sans-serif;"><span style="color:black;">Price:</span> $ {{ $order->price }}</span></p>
                                 <hr style="margin: 0.5rem 0;">
-                                <h5 class="card-title" style="color:black; ">Address: {{$order->address}}</h5>
-                                <h5 class="card-title" style="color:black; ">Products: {{$order->products}}</h5>
+                                <h5 class="card-title" style="color:black; font-family: 'Poppins', sans-serif;margin-top:20px;">Address: {{$order->address}}</h5>
+                                <h5 class="card-title" style="color:black; font-family: 'Poppins', sans-serif;">Products: {{$order->products}}</h5>
+                                <hr>
+                                <h5 class="card-title" style="color:black; font-family: 'Poppins', sans-serif;">Date: {{$order->created_at}}</h5>
                             </div>
                         </div>
                     </div>

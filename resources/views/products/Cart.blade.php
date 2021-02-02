@@ -12,7 +12,7 @@
     <div class="row" style="margin-top:20px;">
         <div class="col-lg-12 margin-tb">
             <div class="pull-right" style="float:left;">
-                <a  class="btn btn-light" href="{{ route('products.index') }}">Go back</a>
+                <a  style="font-family: 'Poppins', sans-serif;" class="btn btn-light" href="{{ route('products.index') }}">Go back</a>
             </div>
         </div>
     </div>
@@ -32,14 +32,18 @@
                         <div class="card mb-3" >
                             <div class="row g-0">
                                 <div class="col-md-3" style="padding-right:0;">
-                                    <img style="width:100%;" src="{{asset('/storage/images/empty.png')}}" alt="empty">
+                                @if ($tmp->image == "")
+                                <img  style="height:100%;" src="{{asset('/storage/images/empty.png')}}" alt="Card image cap">
+                            @else 
+                                <img style="height:100%; width:100%; object-fit:cover;" src="{{ asset('/storage/images/products/'.$tmp->image) }}" alt="Card image cap">
+                            @endif
                                 </div>
                                 <div class="col-md-9">
                                     <div class="card-body" style="height:100%; display:flex; align-items:center;">
                                         <div style="width:100%;">
-                                        <h5 class="card-title" style="font-weight:bold; font-size:20px;">{{ $tmp->product_name }}</h5>
-                                        <p class="card-text"><i>{{ $tmp->product_description }}</i></p>
-                                        <p class="card-text"> <span class="is-danger" style="font-size:14px;color:#ff4747;font-weight:bold;">{{ $tmp->product_price }}</span> / <span style="font-size:13px; font-weight:bold;">{{ $tmp->product_size }}</span>
+                                        <h5 class="card-title" style="font-weight:bold; font-size:20px;font-family: 'Poppins', sans-serif;">{{ $tmp->product_name }}</h5>
+                                        <p class="card-text" style="font-family: 'Poppins', sans-serif;"><i>{{ $tmp->product_description }}</i></p>
+                                        <p class="card-text"> <span class="is-danger" style="font-size:14px;color:#ff4747;font-weight:bold;font-family: 'Poppins', sans-serif;">{{ $tmp->product_price }}</span> / <span style="font-size:13px; font-weight:bold;font-family: 'Poppins', sans-serif;">{{ $tmp->product_size }}</span>
                                             <span style="float:right;">
                                                 <form action="{{ url('/deletecart/' . $product->id) }}" method="POST" style="float:right;position:relative;top:-20px">
                                                     @csrf
@@ -71,12 +75,12 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
-                            <h2 class="card-title" style="font-size:25px;font-weight:bold;">Order Summary</h2>
-                            <p class="card-text">Subtotal <span id="subtotal" style="float:right;">$ {{ $subtotal }}</span></p>
-                            <p class="card-text">Shipping <span id="shipping" style="float:right;">$ {{ $shipping_price }}</span></p>
+                            <h2 class="card-title" style="font-size:25px;font-weight:bold;font-family: 'Poppins', sans-serif;">Order Summary</h2>
+                            <p class="card-text">Subtotal <span id="subtotal" style="float:right;font-family: 'Poppins', sans-serif;">$ {{ $subtotal }}</span></p>
+                            <p class="card-text">Shipping <span id="shipping" style="float:right;font-family: 'Poppins', sans-serif;">$ {{ $shipping_price }}</span></p>
                             <hr>
-                            <p class="card-text" style="margin-bottom:25px;"><b>Total <span id="total" style="float:right;">$ {{ $total_price }}</span><b></p>
-                            <a href="{{ route('orders.create') }}" class="btn btn-primary" style="width:100%;background:#ff4747;border:#ff4747;">Checkout</a>
+                            <p class="card-text" style="margin-bottom:25px;"><b>Total <span id="total" style="float:right;font-family: 'Poppins', sans-serif;">$ {{ $total_price }}</span><b></p>
+                            <a href="{{ route('orders.create') }}" class="btn btn-primary" style="width:100%;background:#ff4747;border:#ff4747;font-family: 'Poppins', sans-serif;">Checkout</a>
                         </div>
                     </div>
                 </div>
@@ -84,4 +88,5 @@
         </div>
     </div>
 </div><!-- end container -->
+
 @endsection

@@ -5,14 +5,14 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Create a product') }}</div>
+                <div class="card-header" style="font-family: 'Poppins', sans-serif; font-weight:bold;">{{ __('Create a product') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('products.store') }}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group row">
-                            <label for="product_name" class="col-md-4 col-form-label text-md-right">{{ __('Product Name') }}</label>
+                            <label style="font-family: 'Poppins', sans-serif;" for="product_name" class="col-md-4 col-form-label text-md-right">{{ __('Product Name') }}</label>
 
                             <div class="col-md-6">
                                 <input id="product_name" type="text" class="form-control @error('product_name') is-invalid @enderror" name="product_name" value="{{ old('product_name') }}" required autocomplete="product_name" autofocus placeholder="Bitolsko Milk">
@@ -26,7 +26,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="product_description" class="col-md-4 col-form-label text-md-right">{{ __('Product Description') }}</label>
+                            <label style="font-family: 'Poppins', sans-serif;" for="product_description" class="col-md-4 col-form-label text-md-right">{{ __('Product Description') }}</label>
 
                             <div class="col-md-6">
                                 <input id="product_description" type="text" class="form-control @error('product_description') is-invalid @enderror" name="product_description" required placeholder="Most required product...">
@@ -40,7 +40,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="product_category" class="col-md-4 col-form-label text-md-right">{{ __('Product Category') }}</label>
+                            <label style="font-family: 'Poppins', sans-serif;" for="product_category" class="col-md-4 col-form-label text-md-right">{{ __('Product Category') }}</label>
 
                             <div class="col-md-6">
                                 <select id="product_category" class="form-control" name="product_category" required>
@@ -55,7 +55,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="product_size" class="col-md-4 col-form-label text-md-right">{{ __('Product Size') }}</label>
+                            <label style="font-family: 'Poppins', sans-serif;" for="product_size" class="col-md-4 col-form-label text-md-right">{{ __('Product Size') }}</label>
 
                             <div class="col-md-6">
                                 <input id="product_size" type="text" class="form-control @error('product_size') is-invalid @enderror" name="product_size" required autocomplete="product_size" placeholder="ex. 1 lt.">
@@ -69,7 +69,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="product_price" class="col-md-4 col-form-label text-md-right">{{ __('Product Price') }}</label>
+                            <label style="font-family: 'Poppins', sans-serif;" for="product_price" class="col-md-4 col-form-label text-md-right">{{ __('Product Price') }}</label>
 
                             <div class="col-md-6">
                                 <input id="product_price" type="text" class="form-control @error('product_price') is-invalid @enderror" name="product_price" required autocomplete="product_price" placeholder="100$">
@@ -98,11 +98,11 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-danger" style=" background:#ff4747; border:#ff4747;">
+                                <button type="submit" class="btn btn-danger" style=" background:#ff4747; border:#ff4747;font-family: 'Poppins', sans-serif;">
                                     {{ __('Create Product') }}
                                 </button>
 
-                                <a href="{{ route('products.index') }}" type="submit" class="btn btn-light" style="margin-left:10px;">
+                                <a href="{{ route('products.index') }}" type="submit" class="btn btn-light" style="margin-left:10px;font-family: 'Poppins', sans-serif;">
                                     {{ __('Cancel') }}
                                 </a>
                             </div>

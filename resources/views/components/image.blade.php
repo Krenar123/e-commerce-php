@@ -1,0 +1,1 @@
+<img style="height:150px; width:100%; object-fit:cover;" src="{{ $src }}" alt="Card image cap">

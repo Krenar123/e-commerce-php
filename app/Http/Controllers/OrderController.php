@@ -12,6 +12,10 @@ use Auth;
 
 class OrderController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('role:Client');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -50,7 +54,7 @@ class OrderController extends Controller
         foreach($carts as $cart) {
             $product = Product::find($cart->product_id);
             Product::find($cart->product_id)->increment('ordered' , $cart->quantity);
-            Notification::insert(['market_id' => $product->user_id, 'order_id' => $order->id,'product_name' => $product->product_name,'address' => $request['city'].', '.$request['address'], 'email' => $request['email'], 'shipping_price' => '','quantity' => $cart->quantity, 'price' => $product->product_price]);
+            Notification::insert(['market_id' => $product->user_id, 'order_id' => $order->id,'product_name' => $product->product_name,'address' => $request['city'].', '.$request['address'], 'email' => $request['email'], 'shipping_price' => '','quantity' => $cart->quantity, 'price' => $product->product_price, 'order_created' => $order->created_at]);
         }
         
         Cart::where('user_id', auth()->id())->delete();

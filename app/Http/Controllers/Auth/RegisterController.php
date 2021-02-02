@@ -67,7 +67,7 @@ class RegisterController extends Controller
     {
         $errors = $this->validator($data);
         
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
@@ -76,5 +76,15 @@ class RegisterController extends Controller
             'market_address' => $data['market_address'],
             'client_address' => $data['client_address'],
         ]);
+
+        if ( $user->role == "admin"){
+            $user->attachRole("admin");
+        }elseif ($user->role == "Market Owner"){
+            $user->attachRole("Market Owner");
+        }elseif ($user->role == "Client"){
+            $user->attachRole("Client");
+        }
+
+        return $user;
     }
 }

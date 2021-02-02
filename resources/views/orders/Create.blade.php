@@ -9,7 +9,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Checkout') }}</div>
+                <div style="font-family: 'Poppins', sans-serif; font-weight:bold;" class="card-header">{{ __('Checkout') }}</div>
                 <?php
                     $total_price = 0;
                     $all_products = "";
@@ -28,12 +28,12 @@
                     }
                 ?>
                 <div class="card-body">
-                    <p style="text-align:center; max-width:330px; margin:0 auto; margin-bottom:30px; color: grey;"><i>Before you do the checkout, be aware that you get free shipping only if you order over <b>USD 5</b></i></p>
+                    <p style="font-family: 'Poppins', sans-serif; text-align:center; max-width:330px; margin:0 auto; margin-bottom:30px; color: grey;"><i>Before you do the checkout, be aware that you get free shipping only if you order over <b>USD 5</b></i></p>
                     <form method="POST" action="{{ route('orders.store') }}" id="myForm">
                         @csrf
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Order Name') }}</label>
+                            <label style="font-family: 'Poppins', sans-serif;" for="name" class="col-md-4 col-form-label text-md-right">{{ __('Order Name') }}</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Sweet candy...">
@@ -47,7 +47,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Email') }}</label>
+                            <label style="font-family: 'Poppins', sans-serif;" for="email" class="col-md-4 col-form-label text-md-right">{{ __('Email') }}</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" required autocomplete="email" placeholder="someone@example.com" value="{{ $email }}">
@@ -61,7 +61,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="city" class="col-md-4 col-form-label text-md-right">{{ __('City') }}</label>
+                            <label style="font-family: 'Poppins', sans-serif;" for="city" class="col-md-4 col-form-label text-md-right">{{ __('City') }}</label>
 
                             <div class="col-md-6">
                                 <input id="city" type="text" class="form-control @error('city') is-invalid @enderror" name="city" required autocomplete="city" placeholder="Skopje">
@@ -75,7 +75,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Address') }}</label>
+                            <label style="font-family: 'Poppins', sans-serif;" for="address" class="col-md-4 col-form-label text-md-right">{{ __('Address') }}</label>
 
                             <div class="col-md-6">
                                 <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" required placeholder="Vizbegovo ul.1 br.92/B">
@@ -93,11 +93,11 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-danger" <?php if ($total_price == 0 ){ ?> disabled <?php   } ?> style=" background:#ff4747; border:#ff4747;">
+                                <button type="submit" class="btn btn-danger" <?php if ($total_price == 0 ){ ?> disabled <?php   } ?> style="font-family: 'Poppins', sans-serif; background:#ff4747; border:#ff4747;">
                                     {{ __('Make the order') }}
                                 </button>
 
-                                <a href="{{ route('products.index') }}" type="submit" class="btn btn-light" style="margin-left:10px;">
+                                <a href="{{ route('products.index') }}" type="submit" class="btn btn-light" style="margin-left:10px; font-family: 'Poppins', sans-serif;">
                                     {{ __('Cancel') }}
                                 </a>
                             </div>

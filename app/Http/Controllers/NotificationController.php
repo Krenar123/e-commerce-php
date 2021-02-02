@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class NotificationController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('role:Market Owner');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,8 +19,7 @@ class NotificationController extends Controller
     public function index()
     {
         $notifications = Notification::where('market_id', auth()->id())->get();
-        return view('notifications.Index', compact('notifications'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('notifications.Index', compact('notifications'));
     }
 
     /**

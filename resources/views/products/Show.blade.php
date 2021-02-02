@@ -15,14 +15,14 @@
     <div class="row" style="margin-top:20px;">
         <div class="col-lg-12 margin-tb">
             <div class="pull-right" style="float:left;">
-                <a  class="btn btn-light" href="{{ route('products.index') }}">Go back</a>
+                <a  style="font-family: 'Poppins', sans-serif;" class="btn btn-light" href="{{ route('products.index') }}">Go back</a>
             </div>
             @if ( Auth::check() && Auth::user()->role == "Market owner" )
             @else
             <div style="display:flex; align-items:center;font-size:25px;margin-right:10px; color: #ff4747; float:right;">
                 <a href="/cart" id="shoppingbasket">
                 <i class="fas fa-shopping-basket"></i>
-                <span style="font-size:15px; font-weight:bold; position:relative;top:-10px; left:-5px;">{{ $carts_count }}</span>
+                <span style="font-size:15px; font-weight:bold; position:relative;top:-10px; left:-5px;font-family: 'Poppins', sans-serif;">{{ $carts_count }}</span>
                 </a>
             </div>
             @endif
@@ -30,18 +30,21 @@
     </div>
     <div class="row" style="margin-top:20px;">
         <div class="col-md-6" style="height:500px; text-align:center;">
+        @if ($product->image == "")
             <img style="height:100%; border-radius:10px;" src="{{asset('/storage/images/empty.png')}}" />
-            <!-- <img style="height:100%; border-radius:10px;" src="{{asset('/storage/images/products/'.$product->image)}}" alt="Kodak Brownie Flash B Camera" class="image-responsive"/> -->
+            @else
+            <img style="height:100%; border-radius:10px;" src="{{asset('/storage/images/products/'.$product->image)}}" alt="Kodak Brownie Flash B Camera" class="image-responsive"/>
+            @endif
         </div>
         <div class="col-md-6">
             <div class="row">
                 <div class="col-md-12">
-                    <h1 style="font-size:30px;">{{ $product->product_name }}</h1>
+                    <h1 style="font-size:30px;font-family: 'Poppins', sans-serif;">{{ $product->product_name }}</h1>
                 </div>
             </div>
             <div class="row" style="margin-top:10px;">
                 <div class="col-md-12">
-                    <i><span>{{ $product->product_category }}</span></i>
+                    <i><span style="font-family: 'Poppins', sans-serif;">{{ $product->product_category }}</span></i>
                 </div>
             </div><!-- end row -->
             <div class="row" style="margin-top:10px; margin-bottom:10px;">
@@ -56,23 +59,23 @@
             </div><!-- end row -->
             <div class="row" style="margin-top:10px; margin-bottom:10px;">
                 <div class="col-md-12 bottom-rule">
-                    <h2 class="product-price" style="font-size:25px; font-weight:bold; color:#ff4747;"><span style="color:black;">US</span> {{ $product->product_price}}</h2>
+                    <h2 class="product-price" style="font-size:25px; font-weight:bold; color:#ff4747;font-family: 'Poppins', sans-serif;"><span style="color:black;">US</span> {{ $product->product_price}}</h2>
                 </div>
             </div><!-- end row -->
             <hr>
-            <p style="font-weight:bold;font-size:18px;margin-bottom:10px;">Description</p>
+            <p style="font-weight:bold;font-size:18px;margin-bottom:10px;font-family: 'Poppins', sans-serif;">Description</p>
             <div class="row" style=" margin-bottom:10px;">
                 <div class="col-md-12">
-                    <p class="description">
+                    <p class="description" style="font-family: 'Poppins', sans-serif;">
                     {{ $product->product_description}}
                     </p>
                 </div>
             </div><!-- end row -->
             <hr>
-            <p style="font-weight:bold;font-size:18px;margin-bottom:10px;">Shipping</p>
+            <p style="font-weight:bold;font-size:18px;margin-bottom:10px; font-family: 'Poppins', sans-serif;">Shipping</p>
             <div class="row" style=" margin-bottom:10px;">
                 <div class="col-md-12">
-                    <p class="description">
+                    <p class="description" style="font-family: 'Poppins', sans-serif;">
                         Free shipping on orders over <b>USD 5</b>
                     </p>
                 </div>
@@ -116,11 +119,11 @@
                         <input type="hidden" name="product_id" value="{{ $product->id }}"/>
                         <input type="hidden" name="quantity" value="1" id="addtocart"/>
                         @if ( Auth::check() && Auth::user()->role == "Market owner" )
-                        <button type="submit" disabled class="btn btn-lg btn-brand btn-full-width" style="background:#ff4747; color:white; border-radius:5px; width:100%; font-size:17px;">
+                        <button type="submit" disabled class="btn btn-lg btn-brand btn-full-width" style="background:#ff4747; color:white; border-radius:5px; width:100%; font-size:17px;font-family: 'Poppins', sans-serif;">
                         Add to Cart
                         </button>
                         @else 
-                        <button type="submit" class="btn btn-lg btn-brand btn-full-width" style="background:#ff4747; color:white; border-radius:5px; width:100%; font-size:17px;">
+                        <button type="submit" class="btn btn-lg btn-brand btn-full-width" style="background:#ff4747; color:white; border-radius:5px; width:100%; font-size:17px;font-family: 'Poppins', sans-serif;">
                         Add to Cart
                         </button>
                         @endif
