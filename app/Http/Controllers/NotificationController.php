@@ -9,7 +9,7 @@ class NotificationController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('role:Market Owner');
+        $this->middleware('auth');
     }
     /**
      * Display a listing of the resource.

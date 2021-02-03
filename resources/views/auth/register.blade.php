@@ -120,7 +120,6 @@
         const client = document.getElementById("client");
         const market_address = document.getElementById("market_add");
         const market_name = document.getElementById("market_na");
-
         if (document.getElementById("role").value == "Client"){
             market_address.style.display = "none";
             market_name.style.display = "none";

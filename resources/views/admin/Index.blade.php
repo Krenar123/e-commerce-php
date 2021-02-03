@@ -14,6 +14,7 @@
                 <div class="col-lg-12 margin-tb">
                     <h2 style="float:left; font-size:30px; font-weight:bold;">All Market Owners</h2>
                     <a href="{{ route('admin.client') }}" style="float:right;" class="btn btn-light">Clients</a>
+                    <a href="{{ route('products.index') }}" style="float:right;margin-right:10px;" class="btn btn-light">Products</a>
                 </div>
             </div>
 

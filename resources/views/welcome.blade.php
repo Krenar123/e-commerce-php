@@ -26,11 +26,9 @@
   </header>
 
   <main role="main" class="inner cover">
-    <h1 class="cover-heading" style="font-family: 'Poppins', sans-serif;">Do your Grocery Online!</h1>
+    <h1 class="cover-heading" style="font-size:50px;font-weight:bold;font-family: 'Poppins', sans-serif;">Do your Grocery Online!</h1>
     <p class="lead" style="font-family: 'Poppins', sans-serif;"></p>Per ju oferta dhe sherbime shtes vetem ne Speci i Kuq</p>
-    <p class="lead">
-      <a style="font-family: 'Poppins', sans-serif;" href="#" class="btn btn-lg btn-secondary">Learn more</a>
-    </p>
+    
   </main>
 
   <footer class="mastfoot mt-auto">

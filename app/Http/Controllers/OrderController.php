@@ -14,7 +14,7 @@ class OrderController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('role:Client');
+        $this->middleware('auth');
     }
     /**
      * Display a listing of the resource.

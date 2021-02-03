@@ -15,9 +15,16 @@ class AdminController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('role:admin');
+        $this->middleware('auth');
+        $this->middleware(function ($request, $next) {
+            $this->role = Auth::user()->role;
+            if($this->role != "Admin"){
+                return redirect("/products");
+            }
+            return $next($request);
+        });
     }
-
+    
      /**
      * Display a listing of the resource.
      *
