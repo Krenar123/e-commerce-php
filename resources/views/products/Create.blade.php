@@ -50,6 +50,7 @@
                                     <option value="Bakeries">Bakeries</option>
                                     <option value="Snacks">Snacks</option>
                                     <option value="Sweets">Sweets</option>
+                                    <option value="Sweets">Fruits</option>
                                 </select>
                             </div>
                         </div>
