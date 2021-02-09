@@ -67,14 +67,26 @@ class RegisterController extends Controller
     {
         $errors = $this->validator($data);
         
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'role' => $data['role'],
+            'plan' => $data['plan'],
             'market_name' => $data['market_name'],
             'market_address' => $data['market_address'],
             'client_address' => $data['client_address'],
         ]);
+
+        if ($user->plan == "Fillestar"){
+            $user->product_number = 15;
+        }else if($user->plan == "Mesatar"){
+            $user->product_number = 100;
+        }else if($user->plan == "Avancuar"){
+            $user->product_number = 15000;
+        }
+        $user->save();
+
+        return $user;
     }
 }

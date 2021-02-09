@@ -19,4 +19,8 @@ class Notification extends Model
             $not->shopping_price = "";
         });
     }
+
+    protected $fillable = [
+        'delivered',
+    ];
 }

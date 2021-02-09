@@ -33,6 +33,7 @@
                                 <h5 class="card-title" style="font-size: 20px; color:#333; font-weight:bold;"><u>{{$user->market_name}}</u></h5>
                                 <!-- <p class="card-text" style="font-size:14px;"><i>{{ \Illuminate\Support\Str::limit($user->product_description, 25, '...') }}</i></p> -->
                                 <p class="card-text"> <span class="is-danger" style="font-size:17px;color:#ff4747;font-weight:bold;"><span style="color:black;">Owner:</span> {{ $user->name }}</span></p>
+                                <p class="card-text"> <span class="is-danger" style="font-size:17px;color:#ff4747;font-weight:bold;"><span style="color:black;">Percentage they have to pay:</span> {{ $user->product_percent }}</span></p>
                                 <hr style="margin: 0.5rem 0;">
                                 <h5 class="card-title" style="color:black; margin-top:20px;">Address: {{$user->market_address}}</h5>
                                 <h5 class="card-title" style="color:black; ">Email: {{$user->email}}</h5>

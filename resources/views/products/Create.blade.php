@@ -4,6 +4,15 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+        @if ($user->product_number == 0)
+            <div class="alert alert-dark" role="alert">
+                <p><i style="font-size:20px; margin-right:10px;" class="fas fa-pepper-hot"></i><b>Keni publikuar gjithsej 15 produkte nese doni te publikoni me shum, duhet te paguani planin mesatar ose te avancuar.</b></p>
+            </div>
+        @else 
+            <div class="alert alert-dark" role="alert">
+                <p><i style="font-size:20px; margin-right:10px;" class="fas fa-pepper-hot"></i><b>Ju kane mbetur gjithsej {{ $user->product_number }} produkte per te publikuar.</b></p>
+            </div>
+        @endif
             <div class="card">
                 <div class="card-header" style="font-family: 'Poppins', sans-serif; font-weight:bold;">{{ __('Create a product') }}</div>
 
@@ -99,10 +108,15 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
+                                @if ($user->product_number == 0)
+                                <button disabled type="submit" class="btn btn-danger" style=" background:#ff4747; border:#ff4747;font-family: 'Poppins', sans-serif;">
+                                    {{ __('Create Product') }}
+                                </button>
+                                @else
                                 <button type="submit" class="btn btn-danger" style=" background:#ff4747; border:#ff4747;font-family: 'Poppins', sans-serif;">
                                     {{ __('Create Product') }}
                                 </button>
-
+                                @endif
                                 <a href="{{ route('products.index') }}" type="submit" class="btn btn-light" style="margin-left:10px;font-family: 'Poppins', sans-serif;">
                                     {{ __('Cancel') }}
                                 </a>

@@ -13,7 +13,7 @@
                 <div style="font-family: 'Poppins', sans-serif; font-weight:bold;" class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form id="myForm" method="POST" action="{{ route('register') }}">
                         @csrf
 
                         <div class="form-group row">
@@ -77,6 +77,18 @@
                             </div>
                         </div>
 
+                        <div id="planselect" class="form-group row">
+                            <label  style="font-family: 'Poppins', sans-serif;" for="plan" class="col-md-4 col-form-label text-md-right">{{ __('Plan') }}</label>
+
+                            <div class="col-md-6">
+                                <select id="plan" class="form-control" name="plan" required>
+                                    <option value="Fillestar">Standard plan</option>
+                                    <option value="Mesatar">Medium plan</option>
+                                    <option value="Avancuar">Advanced plan</option>
+                                </select>
+                            </div>
+                        </div>
+
                         <div class="form-group row" id="market_na">
                             <label style="font-family: 'Poppins', sans-serif;" for="role" class="col-md-4 col-form-label text-md-right">{{ __('Market Name') }}</label>
 
@@ -101,13 +113,21 @@
                             </div>
                         </div>
 
+                        <div class="form-group row" style="margin-bottom:15px;">
+                            <div class="col-md-6 offset-md-4">
+                                <input type="checkbox" id="terms" style="margin-top:2px; margin-right:5px;"/>
+                                <a href="/terms" >Accept our Terms and Conditions</a>
+                            </div>
+                        </div>
+
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button style="font-family: 'Poppins', sans-serif;" type="submit" class="btn btn-danger">
+                                <button id="submitbtn" style="font-family: 'Poppins', sans-serif;" type="submit" class="btn btn-danger">
                                     {{ __('Register') }}
                                 </button>
                             </div>
                         </div>
+                        
                     </form>
                 </div>
             </div>
@@ -120,14 +140,18 @@
         const client = document.getElementById("client");
         const market_address = document.getElementById("market_add");
         const market_name = document.getElementById("market_na");
+        const plan = document.getElementById("planselect");
+
         if (document.getElementById("role").value == "Client"){
             market_address.style.display = "none";
             market_name.style.display = "none";
+            plan.style.display = "none";
             client.style.display = "flex";
         }
         else {
             market_address.style.display = "flex";
             market_name.style.display = "flex";
+            plan.style.display = "flex";
             client.style.display = "none";
         }
     }

@@ -6,6 +6,7 @@ use App\Models\Order;
 use App\Models\Product;
 use App\Models\Notification;
 use App\Models\Cart;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Session;
 use Auth;
@@ -54,7 +55,18 @@ class OrderController extends Controller
         foreach($carts as $cart) {
             $product = Product::find($cart->product_id);
             Product::find($cart->product_id)->increment('ordered' , $cart->quantity);
-            Notification::insert(['market_id' => $product->user_id, 'order_id' => $order->id,'product_name' => $product->product_name,'address' => $request['city'].', '.$request['address'], 'email' => $request['email'], 'shipping_price' => '','quantity' => $cart->quantity, 'price' => $product->product_price, 'order_created' => $order->created_at]);
+            $user = User::find($product->user_id);
+            if($user->plan == "Fillestar"){
+                $user->product_percent += ( (5 / 100) * ( (int)preg_replace("/[^0-9.]/", "", $product->product_price) * $cart->quantity) );
+            }
+            else if($user->plan == "Mesatar"){
+                $user->product_percent += ( (3 / 100) * ( (int)preg_replace("/[^0-9.]/", "", $product->product_price) * $cart->quantity) );
+            }
+            else if($user->plan == "Avancuar"){
+                $user->product_percent += ( (1 / 100) * ( (int)preg_replace("/[^0-9.]/", "", $product->product_price) * $cart->quantity) );
+            }
+            $user->save();
+            Notification::insert(['market_id' => $product->user_id, 'order_id' => $order->id,'product_name' => $product->product_name,'address' => $request['city'].', '.$request['address'], 'email' => $request['email'], 'shipping_price' => '','quantity' => $cart->quantity, 'price' => $product->product_price, 'order_created' => $order->created_at, 'delivered' => '']);
         }
         
         Cart::where('user_id', auth()->id())->delete();
@@ -95,7 +107,7 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        //
+        
     }
 
     /**

@@ -74,7 +74,9 @@ class NotificationController extends Controller
      */
     public function update(Request $request, Notification $notification)
     {
-        //
+        $notification->update($request->all());
+
+        return redirect()->route('notifications.index');
     }
 
     /**

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddAdditionalFieldsToUsersTable extends Migration
+class AddPlanInUsers extends Migration
 {
     /**
      * Run the migrations.
@@ -14,9 +14,10 @@ class AddAdditionalFieldsToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('market_name')->nullable();
-            $table->string('market_address')->nullable();
-            $table->string('client_address')->nullable();
+            $table->string('plan')->nullable();
+            $table->string('paid')->nullable();
+            $table->integer('product_number')->nullable();
+            $table->decimal('product_percent', 10, 2)->default(0);
         });
     }
 
@@ -28,9 +29,10 @@ class AddAdditionalFieldsToUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('market_name');
-            $table->dropColumn('market_address');
-            $table->dropColumn('client_address');
+            $table->dropColumn('plan');
+            $table->dropColumn('paid');
+            $table->dropColumn('product_number');
+            $table->dropColumn('product_percent');
         });
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Notification;
 use App\Models\Cart;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Session;
 use Auth;
@@ -22,12 +23,24 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::latest()->paginate(5);
+        $products = Product::latest()->paginate(20);
         $carts_count = Cart::where(['user_id' => auth()->id()])->count();
         return view('products.Index', compact(['products', 'carts_count']))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
+
+    public function payment(){
+        return view('products.Payment');
+    }
+     
+    public function paymentstore(){
+        $user = User::find(auth()->id());
+        $user->paid = "true";
+        $user->save();
+
+        return view('products.Create', compact('user'));
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -35,7 +48,11 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('products.Create');
+        $user = User::find(auth()->id());
+        if ( (($user->plan == "Mesatar") && ($user->product_number == 100) && ($user->paid != "true" ) ) || (($user->plan == "Avancuar") && ($user->product_number == 15000) && ($user->paid != "true" )) ){
+            return view('products.Payment', compact(['user']));
+        }
+        return view('products.Create', compact(['user']));
     }
 
     /**
@@ -66,9 +83,14 @@ class ProductController extends Controller
         $request->merge([
             'image' => $request->file('image')->getClientOriginalName(),
         ]);
-        $product = Product::create($request->all());
-        Product::find($product->id)->update(['image' => $request->file('image')->getClientOriginalName()]);
-
+        $user = User::find(auth()->id());
+        if($user->product_number > 0){
+            $product = Product::create($request->all());
+            Product::find($product->id)->update(['image' => $request->file('image')->getClientOriginalName()]);
+            $user->product_number -= 1;
+            $user->save();
+        }
+        
         return redirect()->route('products.index');
     }
 

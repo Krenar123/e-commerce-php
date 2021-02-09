@@ -2,7 +2,7 @@
 
 @section('content')
 <script
-    src="https://www.paypal.com/sdk/js?client-id=AboupUI-KC8WGpDSJ9r7evB5gT0z4DyAsl5onAeAFkLLGQyC-lOBjg107XxNgon-w28iGAoirkjbZwtz"> // Required. Replace SB_CLIENT_ID with your sandbox client ID.
+src="https://www.paypal.com/sdk/js?client-id=ASuUe09wtr5-aH16L_m7NZLgvYoCubqDI-2JsWKKcUd91-ySyZwZlwssirJY7lIIVjWKBOYCoeA8qhdI"> // Required. Replace SB_CLIENT_ID with your sandbox client ID.
 </script>
 
 <div class="container">
@@ -114,13 +114,14 @@
     </div>
 </div>
 <script>
+const price = document.getElementById("price").value;
   paypal.Buttons({
     createOrder: function(data, actions) {
       // This function sets up the details of the transaction, including the amount and line item details.
       return actions.order.create({
         purchase_units: [{
           amount: {
-            value: '0.01'
+            value: price
           }
         }]
       });

@@ -33,6 +33,8 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
+        'plan',
+        'product_number',
         'market_address',
         'client_address',
         'market_name',

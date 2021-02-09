@@ -37,6 +37,19 @@
                                 <h5 class="card-title" style="color:black; font-family: 'Poppins', sans-serif;">Order: {{$notification->order_id}}</h5>
                                 <hr style="margin: 0.5rem 0;">
                                 <h5 class="card-title" style="color:black; font-family: 'Poppins', sans-serif;">Date: {{ $notification->order_created }}</h5>
+                                @if ($notification->delivered != "true")
+                                    <form method="POST" action="{{ route('notifications.update', $notification->id) }}">
+                                        @csrf
+                                        @method('PUT')
+                                        
+                                        <input type="hidden" value="true" name="delivered" />
+                                        <button type="submit" class="btn btn-danger" style=" background:#ff4747; border:#ff4747;font-family: 'Poppins', sans-serif;">
+                                            {{ __('Delivered') }}
+                                        </button>
+                                    </form>
+                                @else 
+                                    <h5 class="card-title" style="color:black; font-family: 'Poppins', sans-serif;">The product has been delivered</h5>
+                                @endif
                             </div>
                         </div>
                     </div>
