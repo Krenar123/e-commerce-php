@@ -14,7 +14,7 @@
 
                 <div class="card-body">
                     <form id="myForm" method="POST" action="{{ route('register') }}">
-                        @csrf
+                        {{ csrf_field() }}
 
                         <div class="form-group row">
                             <label style="font-family: 'Poppins', sans-serif;" for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
