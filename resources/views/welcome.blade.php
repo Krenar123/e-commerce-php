@@ -26,6 +26,10 @@
   </header>
 
   <main role="main" class="inner cover">
+    <div class="alert alert-dark" role="alert">
+        <p><i style="font-size:20px; margin-right:10px;" class="fas fa-pepper-hot"></i><b>Per shkaqe te mirmbajtjes.</b></p>
+        <p style="margin-left:30px;">Si admin perdorni email: admin@gmail.com pass: Admin123!. Si Market owner perdorni email: market@gmail.com pass: Market123!. Si klient perdorni email: client@gmail.com pass: Client123!.</p>
+    </div>
     <h1 class="cover-heading" style="font-size:50px;font-weight:bold;font-family: 'Poppins', sans-serif;">Do your Grocery Online!</h1>
     <p class="lead" style="font-family: 'Poppins', sans-serif;"></p>Per ju oferta dhe sherbime shtes vetem ne Speci i Kuq</p>
     <a href="/speci-info">Kliko per me shum informacion</a>
