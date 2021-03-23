@@ -41,6 +41,7 @@ Route::get('/speci-info', [App\Http\Controllers\HomeController::class, 'index'])
 Route::post('/add-to-cart', [App\Http\Controllers\ProductController::class, 'addtocart']);
 Route::get('/cart', [App\Http\Controllers\ProductController::class, 'cart'])->name('products.Cart');;
 Route::delete('/deletecart/{id}', [App\Http\Controllers\ProductController::class, 'deletecart'])->name('products.deletecart');
-Auth::routes();
+
 
 Route::get('/home', [App\Http\Controllers\ProductController::class, 'index'])->name('home');
+Auth::routes();
