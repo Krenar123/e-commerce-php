@@ -65,6 +65,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        dd("Went to Create");
         $errors = $this->validator($data);
         
         $user = User::create([
@@ -78,6 +79,7 @@ class RegisterController extends Controller
             'client_address' => $data['client_address'],
         ]);
 
+        dd("Naaah");
         if ($user->plan == "Fillestar"){
             $user->product_number = 15;
         }else if($user->plan == "Mesatar"){
