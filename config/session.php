@@ -155,7 +155,7 @@ return [
     |
     */
 
-    'domain' => env('SESSION_DOMAIN', 'https://fierce-temple-89788.herokuapp.com'),
+    'domain' => env('SESSION_DOMAIN', 'https://fierce-temple-89788.herokuapp.com/'),
 
     /*
     |--------------------------------------------------------------------------
